@@ -10,7 +10,6 @@ public class DayNightCycle : MonoBehaviour
 
     public float timeBetween = 10f;
 
-    public TMP_Text m_TextComponent;
 
 
     public GameObject player;
@@ -21,6 +20,8 @@ public class DayNightCycle : MonoBehaviour
     public List<DayNightObject> dayNightObjects;
 
 
+    public GameObject sun;
+    public Animator sunAnimator;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -38,6 +39,14 @@ public class DayNightCycle : MonoBehaviour
         ChangeMapState(isNight);
 
         StartCoroutine(ChangeBoolValueCoroutine());
+
+
+        
+
+
+
+
+
     }
 
     // Coroutine to change the boolean value every 10 seconds
@@ -52,17 +61,23 @@ public class DayNightCycle : MonoBehaviour
             ChangePLayerState(isNight);
             ChangeEnemiesStates(isNight);
 
-            //UI
-            if (isNight)
-                m_TextComponent.text = "Night";
-            else
-                m_TextComponent.text = "Day";
+
 
 
             ChangeMapState(isNight);
 
+            if (isNight)
+            {
+                sunAnimator.Play("SunSet");
+                Debug.Log("SunAnimation ");
+            }
+            else
+            {
+                sunAnimator.Play("SunRise");
+                Debug.Log("SunReversed ");
+            }
 
-            Debug.Log("Boolean value changed to: " + isNight);
+            Debug.Log("Boolean value changed to: night: " + isNight);
         }
     }
 
@@ -73,6 +88,8 @@ public class DayNightCycle : MonoBehaviour
             {
                 current.ChangeState(_isNight);
             }
+
+
     }
 
 
@@ -84,7 +101,13 @@ public class DayNightCycle : MonoBehaviour
 
     private void ChangeEnemiesStates(bool _isNight)
     {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
 
+        foreach (var enemy in enemies)
+        {
+            var script = enemy.GetComponent<EnemyMovement>();
+            script.isNight = _isNight;
+        }
     }
 
 }

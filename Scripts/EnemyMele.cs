@@ -46,6 +46,8 @@ public class EnemyMele : MonoBehaviour
     {
         // Here you can put code to damage the player or trigger an animation, etc.
         Debug.Log("Attacking player!");
+        player.GetComponent<PlayerMovement>().health -= 3;
+        Debug.Log("Player hp: " + player.GetComponent<PlayerMovement>().health);
 
         // Update the last attack time
         lastAttackTime = Time.time;

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    public int health = 100;
     public float speedModifier;
+    public bool isNight;
 
     private Rigidbody2D rb;
     void Start()
@@ -26,5 +27,11 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = movement * speedModifier;
 
         // rb.velocity = new Vector2(moveHorizontal * speedModifier, rb.velocity.y);
+
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
