@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 1683952538}
   - component: {fileID: 1683952537}
   - component: {fileID: 1683952540}
+  - component: {fileID: 1683952541}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -396,6 +397,20 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2442650839835177771, guid: 0a2e527df9271454fb62ecccfad96581, type: 3}
   attackCooldown: 2
   attackRange: 5
+--- !u!114 &1683952541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683952534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f67727104512c54483954313ebbcc76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 2
+  attackRange: 1.5
 --- !u!1 &1709423663
 GameObject:
   m_ObjectHideFlags: 0
