@@ -9,9 +9,12 @@ public class Enemy : MonoBehaviour
     int currentHealth;
     public GameObject particle;
 
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
         currentHealth = maxHealth;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void Update()
@@ -23,13 +26,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    System.Collections.IEnumerator ApplyTransparencyEffect()
+    {
+        // Set sprite transparency to 50%
+        Color transparentColor = spriteRenderer.color;
+        transparentColor.a = 0.5f;
+        spriteRenderer.color = transparentColor;
+
+        // Wait for half a second
+        yield return new WaitForSeconds(0.5f);
+
+        // Reset sprite transparency to original value
+        transparentColor.a = 1;
+        spriteRenderer.color = transparentColor;
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
         animator.SetTrigger("Hurt");
-        
-        if(currentHealth <= 0) {
+
+        StartCoroutine(ApplyTransparencyEffect());
+        if (currentHealth <= 0) {
             Die();
         }
     }

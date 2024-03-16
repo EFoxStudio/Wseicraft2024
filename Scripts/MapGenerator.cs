@@ -20,9 +20,12 @@ public class MapGenerator : MonoBehaviour
             for (int y = 0; y < mapSize; y++)
             {
 
-                int r = Random.Range(0, rooms.Count); 
+                if (nextRoomPos != Vector2.zero)
+                {
+                    int r = Random.Range(0, rooms.Count); 
 
-                Instantiate(rooms[r], new Vector3(nextRoomPos.x,nextRoomPos.y,0), gameObject.transform.rotation,parent);
+                    Instantiate(rooms[r], new Vector3(nextRoomPos.x,nextRoomPos.y,0), gameObject.transform.rotation,parent);
+                }
                 nextRoomPos.y -= roomSize;
             }
             nextRoomPos.x += roomSize;
