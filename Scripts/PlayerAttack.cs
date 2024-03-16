@@ -20,11 +20,7 @@ public class PlayerAttack : MonoBehaviour
 
     public float attackRate = 2f;
     public float attackRange = 0.5f;
-    public float dashSpeed = 10f; 
-    public float dashDuration = 0.2f;
     float nextAttackTime = 0f;
-
-    private bool isDashing = false;
 
     void Start()
     {
@@ -41,12 +37,6 @@ public class PlayerAttack : MonoBehaviour
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
-        }
-       
-        // Dash input handling
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Dash();
         }
     }
 
@@ -72,8 +62,6 @@ public class PlayerAttack : MonoBehaviour
             point = attackPoint;
         }
 
-        
-
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(point.position, attackRange, enemyLayers);
 
         if (hitEnemies.Length > 0)
@@ -95,15 +83,4 @@ public class PlayerAttack : MonoBehaviour
 
         Gizmos.DrawWireSphere(point.position, attackRange);
     }
-
-    void Dash()
-    {
-        
-    }
-
-    void StopDash()
-    {
-
-    }
-
 }

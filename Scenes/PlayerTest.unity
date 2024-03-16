@@ -268,6 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   animator: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!1 &1268466062
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +417,14 @@ PrefabInstance:
     - target: {fileID: 263641882626882754, guid: c51b1513c74aa744f86c0b77aa3d588d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960762809694627320, guid: c51b1513c74aa744f86c0b77aa3d588d, type: 3}
+      propertyPath: dashSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960762809694627320, guid: c51b1513c74aa744f86c0b77aa3d588d, type: 3}
+      propertyPath: dashDuration
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8968063722819684937, guid: c51b1513c74aa744f86c0b77aa3d588d, type: 3}
       propertyPath: m_LocalPosition.x

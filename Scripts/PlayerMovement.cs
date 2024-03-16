@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveHorizontal;
     public float moveVertical;
+    Vector2 moveDirection;
 
     public int hp = 100;
 
@@ -17,54 +20,89 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
+    [Header("Dash Settings")]
+    [SerializeField] float dashSpeed = 10f;
+    [SerializeField] float dashDuration = 1f;
+    [SerializeField] float dashCooldawn = 1f;
+    bool isDashing;
+    bool canDash = true;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        canDash = true;
     }
 
     void Update()
     {
-        // Input handling for movement
+
+        if (isDashing)
+        {
+            return;
+        }
+ 
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         moveVertical = Input.GetAxis("Vertical");
-        bool horizontal = false;
 
-        // Set animator parameters based on movement direction
+        moveDirection = new Vector2(moveHorizontal, moveVertical).normalized;
+
         if (moveHorizontal != 0)
         {
-            animator.SetFloat("Speed", Mathf.Abs(moveHorizontal)); // Set speed for side movement
-            animator.SetFloat("DirectionX", moveHorizontal); // Set direction for side movement
-            animator.SetFloat("DirectionY", 0); // Reset vertical direction
+            animator.SetFloat("Speed", Mathf.Abs(moveHorizontal)); 
+            animator.SetFloat("DirectionX", moveHorizontal); 
+            animator.SetFloat("DirectionY", 0); 
             animator.SetBool("horizontal", true);
         }
         else if (moveVertical != 0)
         {
-            animator.SetFloat("Speed", Mathf.Abs(moveVertical)); // Set speed for up/down movement
-            animator.SetFloat("DirectionX", 0); // Reset horizontal direction
-            animator.SetFloat("DirectionY", moveVertical); // Set direction for up/down movement
+            animator.SetFloat("Speed", Mathf.Abs(moveVertical));
+            animator.SetFloat("DirectionX", 0); 
+            animator.SetFloat("DirectionY", moveVertical); 
             animator.SetBool("horizontal", false);
         }
         else
         {
-            animator.SetFloat("Speed", 0); // No movement
+            animator.SetFloat("Speed", 0); 
             animator.SetBool("horizontal", false);
         }
 
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
         rb.velocity = movement * speed;
 
-        if (hp < 0)
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
-            Destroy(gameObject);
+            StartCoroutine(Dash());
         }
 
+        if (hp <= 0)
+        {
+            SceneManager.LoadScene("wypierdolka");
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
     {
-        
-        // Apply movement to the Rigidbody2D
+
+        if (isDashing)
+        {
+            return;
+        }
         spriteRenderer.flipX = rb.velocity.x < 0f;
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        animator.SetTrigger("Dash");
+        rb.velocity = new Vector2(moveDirection.x * dashSpeed, moveDirection.y * dashSpeed);
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashCooldawn);
+        canDash = true;
     }
 }
