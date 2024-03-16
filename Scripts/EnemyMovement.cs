@@ -48,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
             speed = 0;
 
         if (speed == 0)
-            speed = 0.2f;
+            speed = 0.1f;
 
         //UnityEngine.Debug.Log("plyer velocity: " + playerVelocity + "   enemy velocity: " + speed);
 
