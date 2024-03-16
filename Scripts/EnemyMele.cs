@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMele : MonoBehaviour
 {
-    public float attackDuration = 1f; // Time required for continuous contact to initiate attack
+    public float attackDuration = 0.5f; // Time required for continuous contact to initiate attack
     private float attackTimer = 0f; // Timer to track contact duration
     public int attack = 30;
 
