@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     public float speed = 3f; // Speed of the enemy
     public float speedModifier = 1f;
+    public Animator animator;
     private Transform player; // Reference to the player's transform
 
     // Start is called before the first frame update
@@ -25,6 +26,8 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("Speed", (speed * speedModifier));
+        
         // Check if player is within range
         if (player != null)
         {
@@ -34,18 +37,20 @@ public class EnemyMovement : MonoBehaviour
             // Move the enemy towards the player
             transform.position += direction * speed * speedModifier * Time.deltaTime;
 
-            // Optionally, rotate the enemy to face the player
-            RotateTowardsPlayer(direction);
+            if(Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+            {
+                animator.SetFloat("DirectionY", direction.y);
+                animator.SetFloat("DirectionX", 0);
+            }
+            else
+            {
+                animator.SetFloat("DirectionX", direction.x);
+                animator.SetFloat("DirectionY", 0);
+            }
+
+
+            UnityEngine.Debug.Log(direction);
         }
-    }
-
-    void RotateTowardsPlayer(Vector3 direction)
-    {
-        // Calculate the angle in degrees
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        // Apply rotation to the enemy
-        transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 
 }
