@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         // Input handling for movement
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         moveVertical = Input.GetAxis("Vertical");
-        bool horizontal = false;
+
 
         // Set animator parameters based on movement direction
         if (moveHorizontal != 0)
@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
         rb.velocity = movement * speed;
 
-        if (hp < 0)
+        if (hp <= 0)
         {
             Destroy(gameObject);
         }
