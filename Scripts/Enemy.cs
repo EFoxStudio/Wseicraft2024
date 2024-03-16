@@ -13,6 +13,14 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    public void Update()
+    {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;

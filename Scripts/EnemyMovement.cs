@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,8 +8,11 @@ public class EnemyMovement : MonoBehaviour
 {
     public float speed = 3f; // Speed of the enemy
     public float speedModifier = 1f;
+    public float defaultSpeed = 3;
     public Animator animator;
     private Transform player; // Reference to the player's transform
+    public float range = 5f;
+    public bool isNight;
 
     // Start is called before the first frame update
     void Start()
@@ -27,9 +31,38 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         animator.SetFloat("Speed", (speed * speedModifier));
-        
+
+        if (isNight)
+        {
+
+            float playerVelocity = Math.Abs(player.GetComponent<Rigidbody2D>().velocity.x) + Math.Abs(player.GetComponent<Rigidbody2D>().velocity.y);
+            playerVelocity *= 0.2f;
+            if (playerVelocity != 0)
+            {
+                speed = playerVelocity;
+                speed *= -1;
+            }
+            else
+            {
+                speed = defaultSpeed;
+            }
+
+            if (speed < 0)
+                speed = 0;
+
+            if (speed == 0)
+                speed = 0.2f;
+        }
+        else
+        {
+            speed = defaultSpeed;
+        }
+
+
+
+
         // Check if player is within range
-        if (player != null)
+        if (player != null && Vector3.Distance(transform.position, player.position)<range)
         {
             // Calculate the direction towards the player
             Vector3 direction = (player.position - transform.position).normalized;
@@ -49,8 +82,15 @@ public class EnemyMovement : MonoBehaviour
             }
 
 
-            UnityEngine.Debug.Log(direction);
+            //UnityEngine.Debug.Log(direction);
         }
+    }
+
+
+
+    public void ChangeDay(bool _isNight)
+    {
+        isNight = _isNight;
     }
 
 }

@@ -36,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.V))
+            if (Input.GetMouseButtonDown(0))
             {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
@@ -72,7 +72,15 @@ public class PlayerAttack : MonoBehaviour
             point = attackPoint;
         }
 
+        
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(point.position, attackRange, enemyLayers);
+
+        if (hitEnemies.Length > 0)
+        {
+            Camera.main.GetComponent<Shake>().ShakeCam(0.03f);
+
+        }
         foreach(Collider2D enemy in hitEnemies)
         {
             Debug.Log("We  hit " + enemy.name);
@@ -90,23 +98,12 @@ public class PlayerAttack : MonoBehaviour
 
     void Dash()
     {
-        if (!isDashing)
-        {
-            isDashing = true;
-            // Disable player movement while dashing
-            rb.velocity = Vector2.zero;
-            // Apply dash effect
-            rb.velocity = transform.right * dashSpeed;
-            // Invoke a method to stop dashing after a duration
-            Invoke("StopDash", dashDuration);
-        }
+        
     }
 
     void StopDash()
     {
-        isDashing = false;
-        // Enable player movement again after dashing
-        rb.velocity = Vector2.zero;
+
     }
 
 }

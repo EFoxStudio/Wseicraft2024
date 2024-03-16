@@ -95,7 +95,14 @@ public class DayNightCycle : MonoBehaviour
 
     private void ChangePLayerState(bool _isNight)
     {
-        
+        if (_isNight)
+        {
+            player.GetComponent<PlayerMovement>().speed = 5;
+        }
+        else
+        {
+            player.GetComponent<PlayerMovement>().speed = 1;
+        }
     }
 
 
@@ -106,7 +113,7 @@ public class DayNightCycle : MonoBehaviour
         foreach (var enemy in enemies)
         {
             var script = enemy.GetComponent<EnemyMovement>();
-            script.isNight = _isNight;
+            script.ChangeDay(_isNight);
         }
     }
 

@@ -8,6 +8,8 @@ public class CameraMovement : MonoBehaviour
     public float smoothSpeed = 0.125f; // Smoothing speed for camera movement
     public Vector3 offset; // Offset of the camera from the player
 
+    
+
     private void FixedUpdate()
     {
         if (target != null)
@@ -22,4 +24,7 @@ public class CameraMovement : MonoBehaviour
             
         }
     }
+
+    
+
 }
