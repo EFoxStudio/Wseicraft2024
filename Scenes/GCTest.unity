@@ -268,13 +268,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e582903ad6997479037287fca430fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSize: 3
+  mapSize: 10
   rooms:
   - {fileID: 4935244579489232161, guid: e23325a1067394d40a681b47d8b4e44a, type: 3}
   - {fileID: 4326077551534160580, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
   - {fileID: 327147525174993400, guid: 0118640795af11c468b6cc61689716fa, type: 3}
   - {fileID: 7494572317143949000, guid: 837a815201fdfc240bfccc1879feb312, type: 3}
-  roomSize: 2
+  roomSize: 15
   parent: {fileID: 148777118}
 --- !u!1 &137292734 stripped
 GameObject:
@@ -395,8 +395,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1425280964}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860172443
@@ -534,68 +533,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1425280963
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 148777118}
-    m_Modifications:
-    - target: {fileID: 842008736699802017, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 842008736699802017, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 842008736699802017, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 842008736699802017, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 842008736699802017, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 842008736699802017, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 842008736699802017, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 842008736699802017, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 842008736699802017, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 842008736699802017, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4326077551534160580, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-      propertyPath: m_Name
-      value: room12
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
---- !u!4 &1425280964 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 842008736699802017, guid: 06b2c9ee91eb60747a691168428df14c, type: 3}
-  m_PrefabInstance: {fileID: 1425280963}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1458433073
 GameObject:
   m_ObjectHideFlags: 0
