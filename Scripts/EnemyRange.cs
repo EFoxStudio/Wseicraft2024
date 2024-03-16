@@ -1,34 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class EnemyRange : MonoBehaviour
 {
-    public GameObject projectilePrefab; // Prefab of the projectile to be instantiated
-    public float attackCooldown = 2f; // Cooldown between attacks
-    public float attackRange = 5f; // Maximum distance for attacking
-    private Transform player; // Reference to the player's transform
-    private float lastAttackTime; // Time when the last attack was performed
-    // Start is called before the first frame update
+
+    public Transform firePoint;
+    public GameObject bulletPrefab;
+    public float attackCooldown = 2f;
+    public float bulletForce = 20f;
+    private Transform player;
+    private Transform shooting;
+    private float lastAttackTime;
+    public float attackRange = 100f;
+
     void Start()
     {
-        // Find the player object using its tag
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        // Check if the player object exists
-        if (player == null)
-        {
-            Debug.LogError("Player not found! Make sure to tag the player object with 'Player'");
-        }
-
-        // Set the initial attack time to ensure the enemy can attack immediately
         lastAttackTime = -attackCooldown;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        shooting = GameObject.FindGameObjectWithTag("FirePoint").transform;
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Check if player is within range and cooldown has passed
+        Vector3 direction = (player.position - transform.position).normalized;
+        RotateTowardsPlayer(direction);
+
         if (player != null && Time.time - lastAttackTime >= attackCooldown)
         {
             // Calculate the distance between enemy and player
@@ -38,17 +37,25 @@ public class EnemyRange : MonoBehaviour
             if (distanceToPlayer <= attackRange)
             {
                 // Attack the player
-                Attack();
+                Shoot();
             }
         }
     }
 
-    void Attack()
+    void Shoot()
     {
-        // Instantiate a projectile at the enemy's position and rotation
-        Instantiate(projectilePrefab, transform.position, transform.rotation);
-
-        // Update the last attack time
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
         lastAttackTime = Time.time;
+    }
+
+    void RotateTowardsPlayer(Vector3 direction)
+    {
+        // Calculate the angle in degrees
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Apply rotation to the enemy
+        shooting.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 }

@@ -246,9 +246,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2fd652edcef624f8bcab1cc7208f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   attackCooldown: 2
-  attackRange: 5
+  bulletForce: 20
+  attackRange: 1.5
 --- !u!114 &33482010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,7 +337,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -350,6 +352,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!1 &522652536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 522652537}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &522652537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522652536}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1220312156}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &762763543
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +461,7 @@ Transform:
   m_GameObject: {fileID: 762763543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.13, y: 1.85, z: 0}
+  m_LocalPosition: {x: -13.4, y: 4.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -602,7 +635,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -629,9 +662,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2fd652edcef624f8bcab1cc7208f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   attackCooldown: 2
-  attackRange: 5
+  bulletForce: 20
+  attackRange: 1.5
 --- !u!114 &1039290837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -829,7 +864,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -856,9 +891,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2fd652edcef624f8bcab1cc7208f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
   attackCooldown: 2
-  attackRange: 5
+  bulletForce: 20
+  attackRange: 1.5
 --- !u!114 &1214171488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -888,6 +925,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 2
   attackRange: 1.5
+--- !u!1 &1220312155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1220312156}
+  m_Layer: 0
+  m_Name: youwillsee
+  m_TagString: FirePoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1220312156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220312155}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 522652537}
+  m_Father: {fileID: 1683952536}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1683952534
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,10 +1041,11 @@ Transform:
   m_GameObject: {fileID: 1683952534}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.92, y: -3.5, z: 0}
+  m_LocalPosition: {x: 16.9, y: -6.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1220312156}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1683952537
@@ -990,7 +1060,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -1077,9 +1147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2fd652edcef624f8bcab1cc7208f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2442650839835177771, guid: 0a2e527df9271454fb62ecccfad96581, type: 3}
-  attackCooldown: 2
-  attackRange: 5
+  firePoint: {fileID: 522652537}
+  bulletPrefab: {fileID: 7365981183551417590, guid: 39b0c5fe1af51184c9f7acb1d27f2ea3, type: 3}
+  attackCooldown: 1.5
+  bulletForce: 20
+  attackRange: 20
 --- !u!114 &1683952541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,7 +1249,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 18.386593
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
