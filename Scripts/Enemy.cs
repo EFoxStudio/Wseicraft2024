@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 10;
     public Animator animator;
     int currentHealth;
+    public GameObject particle;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            Instantiate(particle, gameObject.transform);
             Destroy(gameObject);
         }
     }

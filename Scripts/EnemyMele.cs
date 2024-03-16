@@ -4,41 +4,42 @@ using UnityEngine;
 
 public class EnemyMele : MonoBehaviour
 {
-    public float attackCooldown = 2f; // Cooldown between attacks
-    public float attackRange = 1.5f; // Distance at which the enemy will start attacking
-    private Transform player; // Reference to the player's transform
-    private float lastAttackTime; // Time when the last attack was performed
-    // Start is called before the first frame update
-    void Start()
+    public float attackDuration = 1f; // Time required for continuous contact to initiate attack
+    private float attackTimer = 0f; // Timer to track contact duration
+    public int attack = 30;
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Find the player object using its tag
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        // Check if the player object exists
-        if (player == null)
+        if (collision.gameObject.CompareTag("Player")) // Check if collided with the player
         {
-            Debug.LogError("Player not found! Make sure to tag the player object with 'Player'");
+            attackTimer = 0f; // Reset the attack timer when collision occurs
         }
-
-        // Set the initial attack time to ensure the enemy can attack immediately
-        lastAttackTime = -attackCooldown;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        // Check if player is within range and cooldown has passed
-        if (player != null && Time.time - lastAttackTime >= attackCooldown)
+        if (collision.gameObject.CompareTag("Player")) // Check if still in contact with the player
         {
-            // Calculate the distance between enemy and player
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            attackTimer += Time.deltaTime; // Increment the timer while in contact
 
-            // Check if the player is within attack range
-            if (distanceToPlayer <= attackRange)
+            if (attackTimer >= attackDuration) // Check if attack duration threshold is met
             {
-                // Attack the player
-                
+                // Perform attack action here
+                Debug.Log("Enemy attacking player!");
+
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().hp -= attack;
+
+                // Reset the attack timer after attacking
+                attackTimer = 0f;
             }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player")) // Check if no longer in contact with the player
+        {
+            attackTimer = 0f; // Reset the attack timer when contact ends
         }
     }
 

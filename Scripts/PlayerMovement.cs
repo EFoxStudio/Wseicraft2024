@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveHorizontal;
     public float moveVertical;
 
+    public int hp = 100;
+
     public float speed = 5f;
     public Animator animator;
 
@@ -51,6 +53,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
         rb.velocity = movement * speed;
+
+        if (hp < 0)
+        {
+            Destroy(gameObject);
+        }
 
     }
 

@@ -229,3 +229,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   animator: {fileID: 0}
+  particle: {fileID: 8890300037380224290, guid: da258b80ca0240048b6eaa6bf07d372d, type: 3}
