@@ -6,7 +6,13 @@ public class PlayerAttack : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator animator;
+
     public Transform attackPoint;
+    public Transform attackPointLeft;
+    public Transform attackPointUp;
+    public Transform attackPointDown;
+    Transform point;
+
     public LayerMask enemyLayers;
     public PlayerMovement pm;
 
@@ -47,9 +53,26 @@ public class PlayerAttack : MonoBehaviour
     void Attack()
     {
         animator.SetTrigger("Attack");
-        
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        if(pm.moveHorizontal > 0)
+        {
+            point = attackPoint;
+        }else if(pm.moveHorizontal < 0)
+        {
+            point = attackPointLeft;
+        }else if(pm.moveVertical > 0)
+        {
+            point = attackPointUp;
+        }else if(pm.moveVertical < 0)
+        {
+            point = attackPointDown;
+        }
+        else
+        {
+            point = attackPoint;
+        }
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(point.position, attackRange, enemyLayers);
         foreach(Collider2D enemy in hitEnemies)
         {
             Debug.Log("We  hit " + enemy.name);
@@ -59,10 +82,10 @@ public class PlayerAttack : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        if (attackPoint == null)
+        if (point == null)
             return;
 
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(point.position, attackRange);
     }
 
     void Dash()
